@@ -1,0 +1,312 @@
+/* style.css remains identical to the version you provided */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --strong-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--strong-shadow);
+    text-align: center;
+    max-width: 95%;
+    width: 800px; /* Adjust as needed */
+    margin: 20px;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.instructions {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+#loading-message {
+    color: white;
+    font-size: 1.2em;
+    padding: 20px;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--accent-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.game-area {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-top: 20px;
+}
+
+.scoreboard {
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.scoreboard h2 {
+    margin: 0 0 10px 0;
+    color: var(--primary-color);
+}
+
+.score-display {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: 25px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.choice {
+    text-align: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 45%; /* Adjust width for spacing */
+    min-width: 150px; /* Minimum width */
+    margin-bottom: 15px; /* Space when wrapped */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.choice:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--strong-shadow);
+}
+
+
+.choice h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.choice img {
+    width: 100px; /* Adjust size */
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px auto;
+    /* Pseudo 3D effect */
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2));
+    transition: transform 0.2s ease;
+}
+
+/* Animate icons slightly on display */
+.choice img.chosen {
+    transform: scale(1.1);
+}
+
+.choice p {
+    font-weight: bold;
+    min-height: 1.2em; /* Prevent layout shift */
+}
+
+#player-gesture-icon {
+    /* Optional: specific styles */
+}
+
+#computer-gesture-icon {
+   /* Optional: specific styles */
+}
+
+
+.result-area {
+    margin-top: 20px;
+}
+
+#result-message {
+    font-size: 1.5em;
+    font-weight: bold;
+    min-height: 1.6em; /* Prevent layout shifts */
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+#result-message.win { color: var(--secondary-color); }
+#result-message.lose { color: var(--accent-color); }
+#result-message.draw { color: var(--text-color); }
+
+#play-again {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+#play-again:hover {
+    background-color: #c0392b; /* Darker red */
+    transform: translateY(-2px);
+}
+
+#play-again:active {
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none !important; /* Use important to override potential conflicts */
+}
+
+/* Webcam and Canvas Styling */
+.webcam-container {
+    position: relative; /* Needed for absolute positioning of canvas */
+    width: 100%;
+    max-width: 480px; /* Control max size */
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden; /* Clip corners */
+    box-shadow: var(--shadow);
+}
+
+#webcam {
+    display: block; /* Remove extra space below video */
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1); /* Mirror display */
+}
+
+#output-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1); /* Mirror display to match video */
+    pointer-events: none; /* Allow interaction with elements below */
+}
+
+.detection-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Adjusted to be inside the container */
+    width: 20px;
+    height: 20px;
+    background-color: red; /* Default to red (no hand) */
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 10; /* Ensure it's above the canvas */
+}
+
+.detection-indicator.detected {
+    background-color: limegreen; /* Green when hand detected */
+}
+
+
+#countdown {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 10px;
+    height: 2.2em; /* Reserve space */
+}
+
+.debug-info {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 10px;
+    word-break: break-all;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .choices {
+        flex-direction: column;
+        align-items: center;
+    }
+    .choice {
+        width: 80%; /* Take more width when stacked */
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+    .webcam-container {
+         max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    .instructions {
+        font-size: 1em;
+    }
+    .score-display {
+        font-size: 1em;
+    }
+    .choice img {
+        width: 80px;
+        height: 80px;
+    }
+    #result-message {
+        font-size: 1.3em;
+    }
+    #play-again {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .webcam-container {
+        max-width: 100%; /* Full width on small screens */
+    }
+}

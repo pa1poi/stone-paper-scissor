@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MediaPipe -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock, Paper, Scissors!</h1>
+        <p class="instructions">Show your hand (✊ 🤚 ✌️) to the camera!</p>
+
+        <div id="loading-message">
+            <p>Loading models and camera...</p>
+            <div class="loader"></div>
+        </div>
+
+        <div class="game-area hidden" id="game-area">
+            <div class="scoreboard">
+                <h2>Score</h2>
+                <div class="score-display">
+                    <span>Player: <span id="player-score">0</span></span>
+                    <span>Computer: <span id="computer-score">0</span></span>
+                </div>
+            </div>
+
+            <div class="choices">
+                <div class="choice player-choice">
+                    <h3>You</h3>
+                    <!-- Ensure icons/unknown.jpeg exists -->
+                    <img id="player-gesture-icon" src="icons/unknown.jpeg" alt="Player Gesture">
+                    <p id="player-detected-gesture">Detecting...</p>
+                </div>
+                <div class="choice computer-choice">
+                    <h3>Computer</h3>
+                     <!-- Ensure icons/unknown.jpeg exists -->
+                    <img id="computer-gesture-icon" src="icons/unknown.jpeg" alt="Computer Gesture">
+                    <p id="computer-chosen-gesture">Waiting...</p>
+                </div>
+            </div>
+
+            <div class="result-area">
+                <p id="result-message">Make your move!</p>
+                <button id="play-again" class="hidden">Play Again</button>
+                 <p id="countdown"></p>
+            </div>
+
+            <!-- Webcam and Canvas -->
+            <div class="webcam-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="output-canvas" width="640px" height="480px"></canvas>
+                 <div class="detection-indicator" id="detection-indicator"></div>
+            </div>
+             <p class="debug-info" id="debug-info"></p> <!-- Optional for debugging -->
+
+        </div>
+    </div>
+
+    <!-- Optional Sound Effects (Ensure these files exist!) -->
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="lose-sound" src="sounds/lose.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
